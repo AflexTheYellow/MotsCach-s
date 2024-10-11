@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compteur de Points</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            flex-wrap: wrap;
+            background-color: rgb(154, 111, 194);
+            color: aliceblue;
+        }
+        input {
+            background-color: rgb(229, 200, 255);
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 6px;
+            border-color: rgb(214, 188, 239);
+            margin: 15px;
+            
+        }
+        .counter {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 5px;
+            flex-wrap: wrap;
+            border-radius: 30px;
+            padding: 20px 40px;
+            border-color: rgb(191, 144, 235);
+            border-width: 3px;
+            background-color: rgb(198, 161, 232);
+            color: white;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        
+        h1{
+            font-size: 35px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        label{ 
+            
+        font-size:25px;
+            margin: 15px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .counter{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Compteur de Points</h1>
+
+    <label for="textInput">Quel mot as-tu trouvé ?</label> </br>
+    <input type="text" id="textInput" placeholder="Écrivez le mot exact ici"></br>
+    <button onclick="checkWord()">Soumettre</button>
+
+    <div class="counter">
+        Points: <span id="points">0</span>
+    </div>
+
+    <script>
+        const wordList = ["Chèvre","Licorne","Cochon"];
+        let points = 0;
+        const usedWords = new Set();  // Ensemble pour garder une trace des mots déjà entrés
+
+        function checkWord() {
+            const input = document.getElementById('textInput').value;
+            
+            // Vérifier si le mot est dans la liste et s'il n'a pas déjà été utilisé
+            if (wordList.includes(input) && !usedWords.has(input)) {
+                points++;
+                usedWords.add(input);  // Ajouter le mot à l'ensemble des mots déjà soumis
+                document.getElementById("points").textContent = points;
+            }
+            
+            // Remettre le champ de texte à vide après l'entrée
+            document.getElementById("textInput").value = '';
+        }
+    </script>
+
+</body>
+</html> 
